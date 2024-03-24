@@ -9,7 +9,6 @@ import com.example.landmarkbook.databinding.ActivityDetailBinding;
 
 public class DetailActivity extends AppCompatActivity {
 
-
     private ActivityDetailBinding binding;
 
 
@@ -23,7 +22,12 @@ public class DetailActivity extends AppCompatActivity {
 
         //Landmark selectedLandmark = (Landmark) intent.getSerializableExtra("landmark");
 
+        Singleton singleton = Singleton.getInstance();
+        Landmark selectedLandmark = singleton.getSelectedLandmark();
 
+        binding.landmarkNameText.setText(selectedLandmark.name);
+        binding.countryNameText.setText(selectedLandmark.country);
+        binding.imageView.setImageResource(selectedLandmark.image);
 
     }
 }

@@ -10,9 +10,13 @@ import com.example.landmarkbook.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 
+
 public class MainActivity extends AppCompatActivity {
+
+    //static Landmark selectedLandmark;
     private ActivityMainBinding binding;
     ArrayList<Landmark> landmarkArrayList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+
+        //Data
 
         landmarkArrayList = new ArrayList<>();
 
@@ -36,6 +42,44 @@ public class MainActivity extends AppCompatActivity {
 
         //RecyclerView
 
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LandmarkAdapter landmarkAdapter = new LandmarkAdapter(landmarkArrayList);
+        binding.recyclerView.setAdapter(landmarkAdapter);
+
+
+
+        /*
+        //Not Efficient
+        Bitmap pisa = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.pisa);
+        Bitmap eiffel = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.eiffel);
+        Bitmap colesseo = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.colesseo);
+        Bitmap londonBridge = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.londonbridge);
+
+         */
+
+
+        /*
+        //ListView
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(MainActivity.this,android.R.layout.simple_list_item_1,landmarkArrayList.stream().map(landmark-> landmark.name).collect(Collectors.toList()));
+
+        binding.listView.setAdapter(arrayAdapter);
+
+        binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                //System.out.println(landmarkNames.get(i));
+                //System.out.println(countryNames.get(i));
+
+                Intent intent = new Intent(MainActivity.this,DetailActivity.class);
+                intent.putExtra("landmark", landmarkArrayList.get(i));
+                startActivity(intent);
+
+            }
+        });
+
+         */
 
     }
 }
